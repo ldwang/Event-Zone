@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE11D0E828A00413FC8 /* AppDelegate.swift */; };
-		EF601BE41D0E828A00413FC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE31D0E828A00413FC8 /* ViewController.swift */; };
 		EF601BE71D0E828A00413FC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BE51D0E828A00413FC8 /* Main.storyboard */; };
 		EF601BE91D0E828A00413FC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF601BE81D0E828A00413FC8 /* Assets.xcassets */; };
 		EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */; };
 		EF601BF71D0E828A00413FC8 /* Event_ZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BF61D0E828A00413FC8 /* Event_ZoneTests.swift */; };
 		EF601C021D0E828A00413FC8 /* Event_ZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */; };
+		EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,6 @@
 /* Begin PBXFileReference section */
 		EF601BDE1D0E828A00413FC8 /* Event Zone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Zone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601BE11D0E828A00413FC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF601BE31D0E828A00413FC8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF601BE61D0E828A00413FC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF601BE81D0E828A00413FC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF601BEB1D0E828A00413FC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		EF601BFD1D0E828A00413FC8 /* Event ZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Event ZoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_ZoneUITests.swift; sourceTree = "<group>"; };
 		EF601C031D0E828A00413FC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +97,9 @@
 		EF601BE01D0E828A00413FC8 /* Event Zone */ = {
 			isa = PBXGroup;
 			children = (
+				EF7BB06D1D18912A000E687A /* Models */,
+				EF7BB06C1D189121000E687A /* Controllers */,
 				EF601BE11D0E828A00413FC8 /* AppDelegate.swift */,
-				EF601BE31D0E828A00413FC8 /* ViewController.swift */,
 				EF601BE51D0E828A00413FC8 /* Main.storyboard */,
 				EF601BE81D0E828A00413FC8 /* Assets.xcassets */,
 				EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */,
@@ -123,6 +124,21 @@
 				EF601C031D0E828A00413FC8 /* Info.plist */,
 			);
 			path = "Event ZoneUITests";
+			sourceTree = "<group>";
+		};
+		EF7BB06C1D189121000E687A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EF7BB06D1D18912A000E687A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF601BE41D0E828A00413FC8 /* ViewController.swift in Sources */,
+				EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */,
 				EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +498,7 @@
 				EF601C081D0E828A00413FC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF601C091D0E828A00413FC8 /* Build configuration list for PBXNativeTarget "Event ZoneTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +507,7 @@
 				EF601C0B1D0E828A00413FC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF601C0C1D0E828A00413FC8 /* Build configuration list for PBXNativeTarget "Event ZoneUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +516,7 @@
 				EF601C0E1D0E828A00413FC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
