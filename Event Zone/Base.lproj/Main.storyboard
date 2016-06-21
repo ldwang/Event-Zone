@@ -107,6 +107,9 @@
                             </navigationBar>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Huq-Hp-0F3">
                                 <rect key="frame" x="0.0" y="64" width="600" height="284"/>
+                                <connections>
+                                    <segue destination="K98-7h-HiP" kind="embed" id="5BP-l9-rdr"/>
+                                </connections>
                             </containerView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -126,7 +129,7 @@
             <objects>
                 <tableViewController id="K98-7h-HiP" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sjk-fE-ZDG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="284"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -167,7 +170,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MAf-ZX-yrC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="826"/>
+            <point key="canvasLocation" x="708" y="1016"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="84q-dB-TU3">
