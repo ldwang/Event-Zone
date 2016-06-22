@@ -14,6 +14,7 @@
 		EF601BF71D0E828A00413FC8 /* Event_ZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BF61D0E828A00413FC8 /* Event_ZoneTests.swift */; };
 		EF601C021D0E828A00413FC8 /* Event_ZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */; };
 		EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */; };
+		EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_ZoneUITests.swift; sourceTree = "<group>"; };
 		EF601C031D0E828A00413FC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */,
+				EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */,
 				EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */,
 				EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */,
 			);
@@ -419,6 +423,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "wanglong.Event-Zone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -430,6 +435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "wanglong.Event-Zone";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
