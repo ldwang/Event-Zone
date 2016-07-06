@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF5157661D1F7A5400AD9970 /* Event-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157651D1F7A5400AD9970 /* Event-Constants.swift */; };
+		EF5157681D208C7300AD9970 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157671D208C7300AD9970 /* DateTime.swift */; };
+		EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */; };
 		EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE11D0E828A00413FC8 /* AppDelegate.swift */; };
 		EF601BE71D0E828A00413FC8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BE51D0E828A00413FC8 /* Main.storyboard */; };
 		EF601BE91D0E828A00413FC8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF601BE81D0E828A00413FC8 /* Assets.xcassets */; };
 		EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */; };
 		EF601BF71D0E828A00413FC8 /* Event_ZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BF61D0E828A00413FC8 /* Event_ZoneTests.swift */; };
 		EF601C021D0E828A00413FC8 /* Event_ZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */; };
-		EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */; };
+		EFB79E241D28E0CC00805559 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E231D28E0CC00805559 /* GeoLocation.swift */; };
+		EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */; };
 		EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF5157651D1F7A5400AD9970 /* Event-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event-Constants.swift"; sourceTree = "<group>"; };
+		EF5157671D208C7300AD9970 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
+		EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		EF601BDE1D0E828A00413FC8 /* Event Zone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Zone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601BE11D0E828A00413FC8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF601BE61D0E828A00413FC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,7 +54,8 @@
 		EF601BFD1D0E828A00413FC8 /* Event ZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Event ZoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_ZoneUITests.swift; sourceTree = "<group>"; };
 		EF601C031D0E828A00413FC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		EFB79E231D28E0CC00805559 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
+		EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsAPI.swift; sourceTree = "<group>"; };
 		EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,7 +139,7 @@
 		EF7BB06C1D189121000E687A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				EF7BB06E1D18914C000E687A /* EventDetailViewController.swift */,
+				EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */,
 				EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */,
 			);
 			name = Controllers;
@@ -140,6 +148,10 @@
 		EF7BB06D1D18912A000E687A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF5157651D1F7A5400AD9970 /* Event-Constants.swift */,
+				EF5157671D208C7300AD9970 /* DateTime.swift */,
+				EFB79E231D28E0CC00805559 /* GeoLocation.swift */,
+				EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -275,8 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFB79E241D28E0CC00805559 /* GeoLocation.swift in Sources */,
+				EF5157661D1F7A5400AD9970 /* Event-Constants.swift in Sources */,
+				EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */,
+				EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */,
 				EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */,
-				EF7BB06F1D18914C000E687A /* EventDetailViewController.swift in Sources */,
+				EF5157681D208C7300AD9970 /* DateTime.swift in Sources */,
 				EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
