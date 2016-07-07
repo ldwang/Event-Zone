@@ -186,11 +186,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="31"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-cZ-6uC">
+                                                <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-cZ-6uC">
                                                     <rect key="frame" x="0.0" y="-92" width="600" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="488388566.179497">
                                                         <!--2016-06-23 15:29:26 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="location1StartsDatePickerValueChanged:" destination="k97-uy-JBz" eventType="valueChanged" id="MCu-bi-9WL"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -238,11 +241,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="31"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-Vd-Mcl">
+                                                <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="pRW-Vd-Mcl">
                                                     <rect key="frame" x="0.0" y="-93" width="600" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="488400631.639938">
                                                         <!--2016-06-23 18:50:31 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="location1EndsDatePickerValueChanged:" destination="k97-uy-JBz" eventType="valueChanged" id="gQ1-3l-vDg"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -359,11 +365,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="31"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="hU9-t2-xbV">
+                                                <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="hU9-t2-xbV">
                                                     <rect key="frame" x="0.0" y="-92" width="600" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="488479367.24074298">
                                                         <!--2016-06-24 16:42:47 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="location2StartsDatePickerValueChanged:" destination="k97-uy-JBz" eventType="valueChanged" id="PHJ-o8-CrW"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -411,11 +420,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="31"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="Jmh-MH-fZ4">
+                                                <datePicker clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="Jmh-MH-fZ4">
                                                     <rect key="frame" x="0.0" y="-92" width="600" height="216"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="488479849.82747298">
                                                         <!--2016-06-24 16:50:49 +0000-->
                                                     </date>
+                                                    <connections>
+                                                        <action selector="location2EndsDatePickerValueChanged:" destination="k97-uy-JBz" eventType="valueChanged" id="dtM-pt-yZv"/>
+                                                    </connections>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
