@@ -16,6 +16,7 @@
 		EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */; };
 		EF601BF71D0E828A00413FC8 /* Event_ZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BF61D0E828A00413FC8 /* Event_ZoneTests.swift */; };
 		EF601C021D0E828A00413FC8 /* Event_ZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */; };
+		EF9621F31D30299E005BF049 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9621F21D30299E005BF049 /* CoreDataStack.swift */; };
 		EFB79E241D28E0CC00805559 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E231D28E0CC00805559 /* GeoLocation.swift */; };
 		EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */; };
 		EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */; };
@@ -54,6 +55,7 @@
 		EF601BFD1D0E828A00413FC8 /* Event ZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Event ZoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_ZoneUITests.swift; sourceTree = "<group>"; };
 		EF601C031D0E828A00413FC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF9621F21D30299E005BF049 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "../../../Project 4/ios-nd-persistence-coolnotes/Lesson6-Concurrency/CoolNotes/CoreDataStack.swift"; sourceTree = "<group>"; };
 		EFB79E231D28E0CC00805559 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsAPI.swift; sourceTree = "<group>"; };
 		EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		EF7BB06D1D18912A000E687A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EF9621F21D30299E005BF049 /* CoreDataStack.swift */,
 				EF5157651D1F7A5400AD9970 /* Event-Constants.swift */,
 				EF5157671D208C7300AD9970 /* DateTime.swift */,
 				EFB79E231D28E0CC00805559 /* GeoLocation.swift */,
@@ -294,6 +297,7 @@
 				EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */,
 				EF5157681D208C7300AD9970 /* DateTime.swift in Sources */,
 				EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */,
+				EF9621F31D30299E005BF049 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
