@@ -146,13 +146,6 @@ class EventDetailTableViewController: UITableViewController {
         print("location1EndsDatePicker: \t" + location1EndsDatePicker.date.description)
         print("location2EndsDatePicker: \t" + location2EndsDatePicker.date.description)
         print("\n")
-        
-        print("\n---------------Locale-----------------")
-        print("location1StartsDatePicker: \t" + (location1StartsDatePicker.locale?.localeIdentifier)!)
-        print("location1EndsDatePicker: \t" + (location1EndsDatePicker.locale?.localeIdentifier)!)
-        print("location2StartsDatePicker: \t" + (location2StartsDatePicker.locale?.localeIdentifier)!)
-        print("location2EndsDatePicker: \t" + (location2EndsDatePicker.locale?.localeIdentifier)!)
-        
     }
     
     
@@ -210,32 +203,16 @@ class EventDetailTableViewController: UITableViewController {
 
     }
     
-    func updateAllDatePickersMode() {
-        
-        location1StartsDatePicker.datePickerMode = .DateAndTime
-        location1EndsDatePicker.datePickerMode = .DateAndTime
-        location2StartsDatePicker.datePickerMode = .DateAndTime
-        location2EndsDatePicker.datePickerMode = .DateAndTime
-        print("updateAllDatePickerMode")
-        printDatePickers()
-    }
-    
+    //Update all the DatePickers' date to sync with each locations
     func updateDatePickerDates() {
         
-            location1StartsDatePicker.setDate(self.eventStartsDate!, animated: true)
-            location1EndsDatePicker.setDate(self.eventEndsDate!, animated: true)
-            location2StartsDatePicker.setDate(self.eventStartsDate!, animated: true)
-            location2EndsDatePicker.setDate(self.eventEndsDate!, animated: true)
-            //printDatePickers()
+            location1StartsDatePicker.date = showDatePickerDateWithTimeZone(eventStartsDate!, timezone: location1TimeZone!)
+            location1EndsDatePicker.date = showDatePickerDateWithTimeZone(eventEndsDate!, timezone: location1TimeZone!)
+            location2StartsDatePicker.date = showDatePickerDateWithTimeZone(eventStartsDate!, timezone: location2TimeZone!)
+            location2EndsDatePicker.date = showDatePickerDateWithTimeZone(eventEndsDate!, timezone: location2TimeZone!)
     }
     
-    func updateDatePickerTimeZones() {
-        location1StartsDatePicker.timeZone = location1TimeZone
-        location1EndsDatePicker.timeZone = location1TimeZone
-        location2StartsDatePicker.timeZone = location2TimeZone
-        location2EndsDatePicker.timeZone = location2TimeZone
-        
-    }
+
     
     
     func updateLocationsDateLabel() {
@@ -243,13 +220,53 @@ class EventDetailTableViewController: UITableViewController {
         location1EndsTimeLabel.text = DateTime().presentDateInTimeZone(eventEndsDate!, timezone: location1TimeZone!)
         location2StartsTimeLabel.text = DateTime().presentDateInTimeZone(eventStartsDate!, timezone: location2TimeZone!)
         location2EndsTimeLabel.text = DateTime().presentDateInTimeZone(eventEndsDate!, timezone: location2TimeZone!)
+        
+        if eventEndsDate!.timeIntervalSince1970 <= eventStartsDate!.timeIntervalSince1970 {
+            location1EndsTimeLabel.attributedText = setLabelStrikeThroughAttribute(location1EndsTimeLabel)
+            location2EndsTimeLabel.attributedText = setLabelStrikeThroughAttribute(location2EndsTimeLabel)
+            
+        } else {
+            location2EndsTimeLabel.attributedText = nil
+            location2EndsTimeLabel.attributedText = nil
+        }
+    }
+    
+    func setLabelStrikeThroughAttribute(label: UILabel)-> NSMutableAttributedString{
+        let labelText = label.text
+        let attributeString: NSMutableAttributedString = NSMutableAttributedString(string: labelText!)
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
+        return attributeString
+    }
+
+    /* There is an issue when two or more datePickers in the same viewController with different timezone settings, they couldn't display the correct date and time and sometimes behave with mulfuction. To aviod this issue, all the 4 datepicker's timezone are set to "GMT" and use two functions "showDatePickerDateWithTimeZone" and "setDateFromDatePicker" to present the dataPiker date and set the event dates from datePicker.
+     */
+    func updateDatePickerTimeZones() {
+        location1StartsDatePicker.timeZone = NSTimeZone(name: "GMT")
+        location1EndsDatePicker.timeZone = NSTimeZone(name: "GMT")
+        location2StartsDatePicker.timeZone = NSTimeZone(name: "GMT")
+        location2EndsDatePicker.timeZone = NSTimeZone(name: "GMT")
+        
+    }
+    
+    //Shift the datePicker date to sync with location's timezone date&time display
+    func showDatePickerDateWithTimeZone(date: NSDate, timezone: NSTimeZone) -> NSDate {
+        
+        let shiftFromGMT =  Double(timezone.secondsFromGMTForDate(date))
+        return date.dateByAddingTimeInterval(shiftFromGMT)
+        
+    }
+    
+    //return the date from shifted datePicker date
+    func setDateFromDatePicker(date: NSDate, timezone: NSTimeZone) -> NSDate {
+        let shiftFromGMT =  Double(timezone.secondsFromGMTForDate(date))
+        return date.dateByAddingTimeInterval( -shiftFromGMT)
     }
     
     //Location1StartsDatePicker Action of Value Changed
     @IBAction func location1StartsDatePickerValueChanged(sender: UIDatePicker) {
         let eventInterval = eventEndsDate?.timeIntervalSinceDate(eventStartsDate!)
         
-        eventStartsDate = sender.date
+        eventStartsDate = setDateFromDatePicker(sender.date, timezone: location1TimeZone!)
         eventEndsDate = eventStartsDate?.dateByAddingTimeInterval(eventInterval!)
         
         updateLocationsDateLabel()
@@ -258,17 +275,18 @@ class EventDetailTableViewController: UITableViewController {
         printDatePickers()
     }
     
-
-
     
     //Location1EndsDatePicker Action of Value Changed
     
     @IBAction func location1EndsDatePickerValueChanged(sender: UIDatePicker) {
         
-        eventEndsDate = sender.date
+        eventEndsDate = setDateFromDatePicker(sender.date, timezone: location1TimeZone!)
         
-        updateLocationsDateLabel()
         updateDatePickerDates()
+        updateLocationsDateLabel()
+//        location1EndsDatePicker.minimumDate = location1StartsDatePicker.date
+//        location2EndsDatePicker.minimumDate = location2StartsDatePicker.date
+        
         print("location1EndsDatePikerChanged")
         printDatePickers()
     }
@@ -278,7 +296,7 @@ class EventDetailTableViewController: UITableViewController {
     @IBAction func location2StartsDatePickerValueChanged(sender: UIDatePicker) {
 
         let eventInterval = eventEndsDate?.timeIntervalSinceDate(eventStartsDate!)
-        eventStartsDate = sender.date
+        eventStartsDate = setDateFromDatePicker(sender.date, timezone: location2TimeZone!)
         eventEndsDate = eventStartsDate?.dateByAddingTimeInterval(eventInterval!)
         
         updateLocationsDateLabel()
@@ -291,10 +309,13 @@ class EventDetailTableViewController: UITableViewController {
     
     @IBAction func location2EndsDatePickerValueChanged(sender: UIDatePicker) {
 
-        eventEndsDate = sender.date
+        eventEndsDate = setDateFromDatePicker(sender.date, timezone: location2TimeZone!)
         
         updateLocationsDateLabel()
         updateDatePickerDates()
+//        location1EndsDatePicker.minimumDate = location1StartsDatePicker.date
+//        location2EndsDatePicker.minimumDate = location2StartsDatePicker.date
+//        
         print("location2EndsDatePikerChanged")
         printDatePickers()
     }
@@ -456,26 +477,20 @@ extension EventDetailTableViewController: HandleLocationSearch {
                         if location == "location1" {
                             self.location1TimeZone = timezone
                             self.location1TimeZoneLabel.text = DateTime().presentTimeZoneLabel(timezone!)
-                            self.location1StartsDatePicker.timeZone = self.location1TimeZone
                             self.datePickerChanged(.Location1StartsDatePicker)
-                            self.location1EndsDatePicker.timeZone = self.location1TimeZone
                             self.datePickerChanged(.Location1EndsDatePicker)
 //                            self.updateLocationsDateLabel()
 //                            self.updateDatePickerTimeZones()
-//                            self.updateDatePickerDates()
-                            self.updateAllDatePickersMode()
+                            self.updateDatePickerDates()
                             
                         } else if location == "location2" {
                             self.location2TimeZone = timezone
                             self.location2TimeZoneLabel.text = DateTime().presentTimeZoneLabel(timezone!)
-                            self.location2StartsDatePicker.timeZone = self.location2TimeZone
                             self.datePickerChanged(.Location2StartsDatePicker)
-                            self.location2EndsDatePicker.timeZone = self.location2TimeZone
                             self.datePickerChanged(.Location2EndsDatePicker)
 //                            self.updateLocationsDateLabel()
 //                            self.updateDatePickerTimeZones()
-//                            self.updateDatePickerDates()
-                            self.updateAllDatePickersMode()
+                            self.updateDatePickerDates()
                         }
                     })
                 }
