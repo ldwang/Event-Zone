@@ -462,6 +462,18 @@ extension EventDetailTableViewController: HandleLocationSearch {
             location2LocationLabel.text = placemark.title
         }
         
+        print(placemark.name)
+        print(placemark.title)
+        print(placemark.thoroughfare)
+        print(placemark.subThoroughfare)
+        print(placemark.locality)
+        print(placemark.subLocality)
+        print(placemark.administrativeArea)
+        print(placemark.subAdministrativeArea)
+        print(placemark.country)
+        print(placemark.postalCode)
+        print(placemark.timeZone)
+        
         updateLocationsAnnotation()
         
         if eventStartsDate != nil {

@@ -115,7 +115,7 @@ extension LocationSearchTableViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
-        print(selectedItem)
+        //print(selectedItem)
         searchController.active = false
         handleLocationSearchDelegate?.getLocationFromSearch(location!, placemark: selectedItem)
         dismissViewControllerAnimated(true, completion: nil)
