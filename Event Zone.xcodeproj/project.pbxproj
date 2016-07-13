@@ -26,6 +26,7 @@
 		EFBB4E9C1D32DDDA0009C9FF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB4E981D32DDDA0009C9FF /* Location.swift */; };
 		EFBB4E9E1D346B030009C9FF /* EventListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB4E9D1D346B030009C9FF /* EventListTableViewController.swift */; };
 		EFBB4EA01D356FC60009C9FF /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB4E9F1D356FC60009C9FF /* CoreDataTableViewController.swift */; };
+		EFBB4EA21D3705E70009C9FF /* EventListTableViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFBB4EA11D3705E70009C9FF /* EventListTableViewControllerCell.swift */; };
 		EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		EFBB4E981D32DDDA0009C9FF /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EFBB4E9D1D346B030009C9FF /* EventListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListTableViewController.swift; sourceTree = "<group>"; };
 		EFBB4E9F1D356FC60009C9FF /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		EFBB4EA11D3705E70009C9FF /* EventListTableViewControllerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListTableViewControllerCell.swift; sourceTree = "<group>"; };
 		EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 				EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */,
 				EFE045221D1AF99F0038F048 /* EventDetailTableViewController.swift */,
 				EFBB4E9D1D346B030009C9FF /* EventListTableViewController.swift */,
+				EFBB4EA11D3705E70009C9FF /* EventListTableViewControllerCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				EF5157661D1F7A5400AD9970 /* Event-Constants.swift in Sources */,
 				EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */,
 				EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */,
+				EFBB4EA21D3705E70009C9FF /* EventListTableViewControllerCell.swift in Sources */,
 				EFBB4E9E1D346B030009C9FF /* EventListTableViewController.swift in Sources */,
 				EFBB4E9C1D32DDDA0009C9FF /* Location.swift in Sources */,
 				EFBB4EA01D356FC60009C9FF /* CoreDataTableViewController.swift in Sources */,

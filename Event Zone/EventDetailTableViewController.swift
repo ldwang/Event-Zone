@@ -15,6 +15,8 @@ protocol HandleLocationSearch {
 
 class EventDetailTableViewController: UITableViewController {
     
+    var event: Event?
+    
     var isNewEvent = true
     var isEditingEvent = false
     
