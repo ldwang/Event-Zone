@@ -45,7 +45,21 @@ class EventListTableViewController: CoreDataTableViewController {
 extension EventListTableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("EventListTableViewCell", forIndexPath: indexPath) as! EventListTableViewControllerCell
         selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
+        let locations = selectedEvent?.locations
+        
+        // Set the Event Title and Locations Info
+        
+        
+        
+        
+        
+        
+        
+        return cell
+        
         
     }
     

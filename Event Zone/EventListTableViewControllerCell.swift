@@ -11,5 +11,7 @@ import UIKit
 
 class EventListTableViewControllerCell: UITableViewCell {
     
-    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var location1: UILabel!
+    @IBOutlet weak var location2: UILabel!
 }
