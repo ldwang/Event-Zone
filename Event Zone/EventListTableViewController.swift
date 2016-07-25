@@ -48,18 +48,12 @@ extension EventListTableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("EventListTableViewCell", forIndexPath: indexPath) as! EventListTableViewControllerCell
         selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
-        let locations = selectedEvent?.locations as? [Location]
+        let locations = selectedEvent?.locations
+        print(locations)
         //Set the Event Title and Locations Info
         
         cell.title.text = selectedEvent?.title
-        for location in locations {
-            
-        }
-        
-        
-        
-        
-        
+     
         
         
         return cell
@@ -86,11 +80,7 @@ extension EventListTableViewController {
             
             if let EventDetailVC = segue.destinationViewController as? EventDetailTableViewController {
                 
-                let indexPath = tableView.indexPathForSelectedRow!
-                
-                selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
-                
-                EventDetailVC.event = selectedEvent!
+                EventDetailVC.event = selectedEvent
                 
             }
         }

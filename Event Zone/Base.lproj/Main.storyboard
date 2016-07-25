@@ -22,14 +22,20 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="wfv-gc-Gym">
                                         <rect key="frame" x="0.0" y="64" width="600" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wfv-gc-Gym" id="RdK-aA-Keo">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="wfv-gc-Gym" id="RdK-aA-Keo">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="31"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTy-jQ-uho">
-                                                    <rect key="frame" x="18" y="0.0" width="563" height="31"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Event Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oTy-jQ-uho">
+                                                    <rect key="frame" x="19" y="0.0" width="563" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="563" id="b3f-06-V4T"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="eventTitleEdited:" destination="k97-uy-JBz" eventType="editingDidEnd" id="qrO-E4-wR2"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -431,11 +437,19 @@
                     <navigationItem key="navigationItem" id="oFv-2G-9TW">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="hRz-Co-QTg">
                             <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="k97-uy-JBz" id="fLl-sl-hDl"/>
+                            </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="dvi-cU-qVj"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="dvi-cU-qVj">
+                            <connections>
+                                <action selector="rightNavBarButtonTouched:" destination="k97-uy-JBz" id="r87-bh-qB2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="hRz-Co-QTg" id="Fsi-Q3-5w1"/>
+                        <outlet property="eventTitleTextField" destination="oTy-jQ-uho" id="uQZ-Vi-1Dk"/>
                         <outlet property="location1EndsDatePicker" destination="pRW-Vd-Mcl" id="FDH-OI-l8d"/>
                         <outlet property="location1EndsTimeLabel" destination="pTX-jm-9JW" id="TSf-rO-ttH"/>
                         <outlet property="location1LocationLabel" destination="aLu-0f-mI5" id="QZG-nc-ihR"/>

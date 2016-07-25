@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         //Start Autosaving
-        stack.autoSave(60)
+        //stack.autoSave(60)
         
         return true
     }

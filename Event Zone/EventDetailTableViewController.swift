@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import CoreData
+import Contacts
 
 protocol HandleLocationSearch {
     func getLocationFromSearch(location: String, placemark: MKPlacemark)
@@ -16,6 +18,9 @@ protocol HandleLocationSearch {
 class EventDetailTableViewController: UITableViewController {
     
     var event: Event?
+    
+    var location1 : Location?
+    var location2 : Location?
     
     var isNewEvent = true
     var isEditingEvent = false
@@ -31,9 +36,12 @@ class EventDetailTableViewController: UITableViewController {
     var location1TimeZone: NSTimeZone? = nil
     var location2TimeZone: NSTimeZone? = nil
     
+    var context : NSManagedObjectContext?
+    
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var rightNavBarButton: UIBarButtonItem!
     
+    @IBOutlet weak var eventTitleTextField: UITextField!
     @IBOutlet weak var location1LocationLabel: UILabel!
     @IBOutlet weak var location1StartsTimeLabel: UILabel!
     @IBOutlet weak var location1EndsTimeLabel: UILabel!
@@ -59,9 +67,59 @@ class EventDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Get the stack
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let stack = delegate.stack
+        context = stack.context
+        
         self.mapView.delegate = self
         
-        initNewEvent()
+        if isNewEvent {
+        
+            initNewEvent()
+            
+        } else if event != nil {
+            
+            eventStartsDate = event?.startsDate
+            eventEndsDate = event?.endsDate
+            eventTitleTextField.text = event?.title
+            
+            let fetchRequest = NSFetchRequest(entityName: "Location")
+            fetchRequest.predicate = NSPredicate(format: "event == %@", event!)
+            do {
+                let locations = try context!.executeFetchRequest(fetchRequest) as! [Location]
+                for location in locations {
+                    if location.locationId == 1 {
+                        location1 = location
+                        location1Placemark = getPlacemarkFromLocation(location)
+                        location1TimeZone = NSTimeZone(name: location.timezone!)
+                        location1TimeZoneLabel.text = DateTime().presentTimeZoneLabel(location1TimeZone!)
+                        
+                    } else {
+                        location2 = location
+                        location2Placemark = getPlacemarkFromLocation(location)
+                        location2TimeZone = NSTimeZone(name: location.timezone!)
+                        location2TimeZoneLabel.text = DateTime().presentTimeZoneLabel(location2TimeZone!)
+                    }
+                }
+                
+                updateLocationsAnnotation()
+                updateDatePickerTimeZones()
+                updateDatePickerDates()
+                updateLocationsDateLabel()
+                
+                isEditingEvent = false
+                //disable the right button
+                rightNavBarButton.title = "Edit"
+                rightNavBarButton.enabled = true
+                
+            } catch {
+                fatalError("Fetching locations from the store failed")
+            }
+            
+        } else {
+            print("Warning: Event is nil!")
+        }
 
     }
     
@@ -94,15 +152,47 @@ class EventDetailTableViewController: UITableViewController {
             eventStartsDate = date
             eventEndsDate = date.dateByAddingTimeInterval(60.0*60.0)
             
+            event?.startsDate = eventStartsDate
+            event?.endsDate = eventEndsDate
+            
+            //update DatePickers and DateLabels
             updateDatePickerTimeZones()
             updateDatePickerDates()
             updateLocationsDateLabel()
             
+            //Initialize event NSManagedObject
+            let eventDict : [String: AnyObject] = [
+                "startsDate" : eventStartsDate!,
+                "endsDate"  : eventEndsDate!
+            ]
+            event = Event(dictionary: eventDict, context: self.context!)
+            
+            //Initialize location1 and location2 NSManagedObject
+            let location1Dict : [String: AnyObject] = [
+                "locationId" : 1
+            ]
+            let location2Dict : [String: AnyObject] = [
+                "locationId" : 2
+            ]
+            location1 = Location(dictionary: location1Dict, context: self.context!)
+            location2 = Location(dictionary: location2Dict, context: self.context!)
+            
+            location1?.event = event
+            location2?.event = event
             
         }
     }
 
     
+    @IBAction func cancelButtonTouched(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func rightNavBarButtonTouched(sender: AnyObject) {
+        if isNewEvent {
+            
+        }
+    }
     
         
     // Change Starts/Ends DateTime Label by DatePicker Value Change
@@ -125,31 +215,46 @@ class EventDetailTableViewController: UITableViewController {
             
     }
     
-    func printDatePickers() {
-        
-        print("--------TimeStamp:" + NSDate().description + "---------")
-        
-        print("\n---------------TimeZone-----------------")
-        print("location1 TimeZone: \t\t" + (location1TimeZone?.description)!)
-        
-        print("location1StartsDatePicker: \t" + location1StartsDatePicker.timeZone!.description)
-        print("location1EndsDatePicker: \t" + location1EndsDatePicker.timeZone!.description)
-        print("location2 TimeZone: \t\t" + (location2TimeZone?.description)!)
-        print("location2StartsDatePicker: \t" + location2StartsDatePicker.timeZone!.description)
-        print("location2EndsDatePicker: \t" + location2EndsDatePicker.timeZone!.description)
-        
-        print("\n---------------Starts Date-----------------")
-        print("eventStartsDate: \t\t\t" + (eventStartsDate?.description)!)
-        print("location1StartsDatePicker: \t" + location1StartsDatePicker.date.description)
-        print("location2StartsDatePicker: \t" + location2StartsDatePicker.date.description)
-
-        print("\n---------------Ends Date-----------------")
-        print("eventEndsDate: \t\t\t\t" + (eventEndsDate?.description)!)
-        print("location1EndsDatePicker: \t" + location1EndsDatePicker.date.description)
-        print("location2EndsDatePicker: \t" + location2EndsDatePicker.date.description)
-        print("\n")
-    }
+//    func printDatePickers() {
+//        
+//        print("--------TimeStamp:" + NSDate().description + "---------")
+//        
+//        print("\n---------------TimeZone-----------------")
+//        print("location1 TimeZone: \t\t" + (location1TimeZone?.description)!)
+//        
+//        print("location1StartsDatePicker: \t" + location1StartsDatePicker.timeZone!.description)
+//        print("location1EndsDatePicker: \t" + location1EndsDatePicker.timeZone!.description)
+//        print("location2 TimeZone: \t\t" + (location2TimeZone?.description)!)
+//        print("location2StartsDatePicker: \t" + location2StartsDatePicker.timeZone!.description)
+//        print("location2EndsDatePicker: \t" + location2EndsDatePicker.timeZone!.description)
+//        
+//        print("\n---------------Starts Date-----------------")
+//        print("eventStartsDate: \t\t\t" + (eventStartsDate?.description)!)
+//        print("location1StartsDatePicker: \t" + location1StartsDatePicker.date.description)
+//        print("location2StartsDatePicker: \t" + location2StartsDatePicker.date.description)
+//
+//        print("\n---------------Ends Date-----------------")
+//        print("eventEndsDate: \t\t\t\t" + (eventEndsDate?.description)!)
+//        print("location1EndsDatePicker: \t" + location1EndsDatePicker.date.description)
+//        print("location2EndsDatePicker: \t" + location2EndsDatePicker.date.description)
+//        print("\n")
+//    }
     
+    
+    func getPlacemarkFromLocation(location: Location)-> MKPlacemark {
+        
+        let coordinate = CLLocationCoordinate2DMake(Double(location.latitude!), Double(location.longitude!))
+        
+        let addressDict = [
+                String(CNPostalAddressCityKey) : location.locality!,
+                String(CNPostalAddressStateKey) : location.administrativeArea!,
+                String(CNPostalAddressCountryKey) : location.country!
+        ]
+        
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
+        
+        return placemark
+    }
     
     //Update DatePickerHidden Status
     func toggleDatePicker(indexPath: NSIndexPath) {
@@ -228,8 +333,8 @@ class EventDetailTableViewController: UITableViewController {
             location2EndsTimeLabel.attributedText = setLabelStrikeThroughAttribute(location2EndsTimeLabel)
             
         } else {
-            location2EndsTimeLabel.attributedText = nil
-            location2EndsTimeLabel.attributedText = nil
+            //location1EndsTimeLabel.attributedText = nil
+            //location2EndsTimeLabel.attributedText = nil
         }
     }
     
@@ -264,6 +369,10 @@ class EventDetailTableViewController: UITableViewController {
         return date.dateByAddingTimeInterval( -shiftFromGMT)
     }
     
+    @IBAction func eventTitleEdited(sender: AnyObject) {
+    }
+    
+    
     //Location1StartsDatePicker Action of Value Changed
     @IBAction func location1StartsDatePickerValueChanged(sender: UIDatePicker) {
         let eventInterval = eventEndsDate?.timeIntervalSinceDate(eventStartsDate!)
@@ -271,10 +380,13 @@ class EventDetailTableViewController: UITableViewController {
         eventStartsDate = setDateFromDatePicker(sender.date, timezone: location1TimeZone!)
         eventEndsDate = eventStartsDate?.dateByAddingTimeInterval(eventInterval!)
         
+        event?.startsDate = eventStartsDate
+        event?.endsDate = eventEndsDate
+        
         updateLocationsDateLabel()
         updateDatePickerDates()
         print("location1StartsDatePikerChanged")
-        printDatePickers()
+        //printDatePickers()
     }
     
     
@@ -283,6 +395,8 @@ class EventDetailTableViewController: UITableViewController {
     @IBAction func location1EndsDatePickerValueChanged(sender: UIDatePicker) {
         
         eventEndsDate = setDateFromDatePicker(sender.date, timezone: location1TimeZone!)
+
+        event?.endsDate = eventEndsDate
         
         updateDatePickerDates()
         updateLocationsDateLabel()
@@ -290,7 +404,7 @@ class EventDetailTableViewController: UITableViewController {
 //        location2EndsDatePicker.minimumDate = location2StartsDatePicker.date
         
         print("location1EndsDatePikerChanged")
-        printDatePickers()
+        //printDatePickers()
     }
     
     //Location2StartsDatePicker Action of Value Changed
@@ -301,10 +415,13 @@ class EventDetailTableViewController: UITableViewController {
         eventStartsDate = setDateFromDatePicker(sender.date, timezone: location2TimeZone!)
         eventEndsDate = eventStartsDate?.dateByAddingTimeInterval(eventInterval!)
         
+        event?.startsDate = eventStartsDate
+        event?.endsDate = eventEndsDate
+        
         updateLocationsDateLabel()
         updateDatePickerDates()
         print("location2StartsDatePikerChanged")
-        printDatePickers()
+        //printDatePickers()
     }
     
     //Location2EndsDatePicker Action of Value Changed
@@ -313,13 +430,15 @@ class EventDetailTableViewController: UITableViewController {
 
         eventEndsDate = setDateFromDatePicker(sender.date, timezone: location2TimeZone!)
         
+        event?.endsDate = eventEndsDate
+        
         updateLocationsDateLabel()
         updateDatePickerDates()
 //        location1EndsDatePicker.minimumDate = location1StartsDatePicker.date
 //        location2EndsDatePicker.minimumDate = location2StartsDatePicker.date
 //        
         print("location2EndsDatePikerChanged")
-        printDatePickers()
+        //printDatePickers()
     }
     
 
@@ -348,7 +467,7 @@ extension EventDetailTableViewController {
         }
         
         print(row)
-        printDatePickers()
+        //printDatePickers()
     }
     
     //Hide/Unhide DatePicker Row
@@ -454,27 +573,39 @@ extension EventDetailTableViewController : MKMapViewDelegate {
 extension EventDetailTableViewController: HandleLocationSearch {
     func getLocationFromSearch(location: String, placemark: MKPlacemark) {
         
+//        var dictionary : [String: AnyObject] = [
+//            "title":                placemark.title!,
+//            "latitude":             placemark.coordinate.latitude,
+//            "longitude":            placemark.coordinate.longitude,
+//            "locality":             placemark.locality!,
+//            "administrativeArea":   placemark.administrativeArea!,
+//            "country":              placemark.country!
+//        ]
+        
         
         if location == "location1" {
             location1Placemark = placemark
             location1LocationLabel.text = placemark.title
             
+            location1?.title = placemark.title
+            location1?.latitude = placemark.coordinate.latitude
+            location1?.longitude = placemark.coordinate.longitude
+            location1?.locality = placemark.locality
+            location1?.administrativeArea = placemark.administrativeArea
+            location1?.country = placemark.country
+            
         } else if location == "location2" {
             location2Placemark = placemark
             location2LocationLabel.text = placemark.title
+            
+            location2?.title = placemark.title
+            location2?.latitude = placemark.coordinate.latitude
+            location2?.longitude = placemark.coordinate.longitude
+            location2?.locality = placemark.locality
+            location2?.administrativeArea = placemark.administrativeArea
+            location2?.country = placemark.country
         }
         
-        print(placemark.name)
-        print(placemark.title)
-        print(placemark.thoroughfare)
-        print(placemark.subThoroughfare)
-        print(placemark.locality)
-        print(placemark.subLocality)
-        print(placemark.administrativeArea)
-        print(placemark.subAdministrativeArea)
-        print(placemark.country)
-        print(placemark.postalCode)
-        print(placemark.timeZone)
         
         updateLocationsAnnotation()
         
@@ -491,20 +622,23 @@ extension EventDetailTableViewController: HandleLocationSearch {
                         if location == "location1" {
                             self.location1TimeZone = timezone
                             self.location1TimeZoneLabel.text = DateTime().presentTimeZoneLabel(timezone!)
+                            self.location1?.timezone = timezone?.name
+                            
+                            
                             self.datePickerChanged(.Location1StartsDatePicker)
                             self.datePickerChanged(.Location1EndsDatePicker)
-//                            self.updateLocationsDateLabel()
-//                            self.updateDatePickerTimeZones()
                             self.updateDatePickerDates()
+                            print(self.location1)
                             
                         } else if location == "location2" {
                             self.location2TimeZone = timezone
                             self.location2TimeZoneLabel.text = DateTime().presentTimeZoneLabel(timezone!)
+                            self.location2?.timezone = timezone?.name
+                            
                             self.datePickerChanged(.Location2StartsDatePicker)
                             self.datePickerChanged(.Location2EndsDatePicker)
-//                            self.updateLocationsDateLabel()
-//                            self.updateDatePickerTimeZones()
                             self.updateDatePickerDates()
+                            print(self.location2)
                         }
                     })
                 }

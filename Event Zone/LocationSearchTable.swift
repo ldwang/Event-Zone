@@ -77,8 +77,6 @@ extension LocationSearchTableViewController: UISearchResultsUpdating {
         
         request.naturalLanguageQuery = searchBarText
         
-        //let region = MKCoordinateRegion
-        //request.region =
         let search = MKLocalSearch(request: request)
         
         search.startWithCompletionHandler { response, _ in
