@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF1BF83C1D4963E2004C0286 /* Event Zone in Resources */ = {isa = PBXBuildFile; fileRef = EF1BF83B1D4963E2004C0286 /* Event Zone */; };
 		EF1BF83E1D496414004C0286 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1BF83D1D496414004C0286 /* CoreDataStack.swift */; };
 		EF5157681D208C7300AD9970 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157671D208C7300AD9970 /* DateTime.swift */; };
 		EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */; };
@@ -48,7 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EF1BF83B1D4963E2004C0286 /* Event Zone */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Event Zone"; sourceTree = "<group>"; };
 		EF1BF83D1D496414004C0286 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EF5157671D208C7300AD9970 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 				EFBB4E971D32DDDA0009C9FF /* Location+CoreDataProperties.swift */,
 				EFBB4E981D32DDDA0009C9FF /* Location.swift */,
 				EF1BF83D1D496414004C0286 /* CoreDataStack.swift */,
-				EF1BF83B1D4963E2004C0286 /* Event Zone */,
 				EF5157671D208C7300AD9970 /* DateTime.swift */,
 				EFB79E231D28E0CC00805559 /* GeoLocation.swift */,
 				EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */,
@@ -287,7 +284,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF1BF83C1D4963E2004C0286 /* Event Zone in Resources */,
 				EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */,
 				EF601BE91D0E828A00413FC8 /* Assets.xcassets in Resources */,
 				EF601BE71D0E828A00413FC8 /* Main.storyboard in Resources */,
