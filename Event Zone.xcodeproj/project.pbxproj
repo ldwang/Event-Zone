@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF1BF83C1D4963E2004C0286 /* Event Zone in Resources */ = {isa = PBXBuildFile; fileRef = EF1BF83B1D4963E2004C0286 /* Event Zone */; };
+		EF1BF83E1D496414004C0286 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1BF83D1D496414004C0286 /* CoreDataStack.swift */; };
 		EF5157681D208C7300AD9970 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157671D208C7300AD9970 /* DateTime.swift */; };
 		EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */; };
 		EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE11D0E828A00413FC8 /* AppDelegate.swift */; };
@@ -15,7 +17,6 @@
 		EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */; };
 		EF601BF71D0E828A00413FC8 /* Event_ZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BF61D0E828A00413FC8 /* Event_ZoneTests.swift */; };
 		EF601C021D0E828A00413FC8 /* Event_ZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */; };
-		EF9621F31D30299E005BF049 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9621F21D30299E005BF049 /* CoreDataStack.swift */; };
 		EF9621FA1D3059A2005BF049 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF9621F81D3059A2005BF049 /* Model.xcdatamodeld */; };
 		EFB79E241D28E0CC00805559 /* GeoLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E231D28E0CC00805559 /* GeoLocation.swift */; };
 		EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF1BF83B1D4963E2004C0286 /* Event Zone */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Event Zone"; sourceTree = "<group>"; };
+		EF1BF83D1D496414004C0286 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		EF5157671D208C7300AD9970 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		EF601BDE1D0E828A00413FC8 /* Event Zone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Zone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +64,6 @@
 		EF601BFD1D0E828A00413FC8 /* Event ZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Event ZoneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF601C011D0E828A00413FC8 /* Event_ZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event_ZoneUITests.swift; sourceTree = "<group>"; };
 		EF601C031D0E828A00413FC8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF9621F21D30299E005BF049 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "../../../Project 4/ios-nd-persistence-coolnotes/Lesson6-Concurrency/CoolNotes/CoreDataStack.swift"; sourceTree = "<group>"; };
 		EF9621F91D3059A2005BF049 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		EFB79E231D28E0CC00805559 /* GeoLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoLocation.swift; sourceTree = "<group>"; };
 		EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsAPI.swift; sourceTree = "<group>"; };
@@ -171,7 +173,8 @@
 				EFBB4E961D32DDDA0009C9FF /* Event.swift */,
 				EFBB4E971D32DDDA0009C9FF /* Location+CoreDataProperties.swift */,
 				EFBB4E981D32DDDA0009C9FF /* Location.swift */,
-				EF9621F21D30299E005BF049 /* CoreDataStack.swift */,
+				EF1BF83D1D496414004C0286 /* CoreDataStack.swift */,
+				EF1BF83B1D4963E2004C0286 /* Event Zone */,
 				EF5157671D208C7300AD9970 /* DateTime.swift */,
 				EFB79E231D28E0CC00805559 /* GeoLocation.swift */,
 				EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */,
@@ -284,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF1BF83C1D4963E2004C0286 /* Event Zone in Resources */,
 				EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */,
 				EF601BE91D0E828A00413FC8 /* Assets.xcassets in Resources */,
 				EF601BE71D0E828A00413FC8 /* Main.storyboard in Resources */,
@@ -318,6 +322,7 @@
 				EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */,
 				EFBB4EA21D3705E70009C9FF /* EventListTableViewControllerCell.swift in Sources */,
 				EFBB4E9E1D346B030009C9FF /* EventListTableViewController.swift in Sources */,
+				EF1BF83E1D496414004C0286 /* CoreDataStack.swift in Sources */,
 				EFBB4E9C1D32DDDA0009C9FF /* Location.swift in Sources */,
 				EFBB4EA01D356FC60009C9FF /* CoreDataTableViewController.swift in Sources */,
 				EFE045241D1AF99F0038F048 /* EventDetailTableViewController.swift in Sources */,
@@ -325,7 +330,6 @@
 				EFBB4E9B1D32DDDA0009C9FF /* Location+CoreDataProperties.swift in Sources */,
 				EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */,
 				EF9621FA1D3059A2005BF049 /* Model.xcdatamodeld in Sources */,
-				EF9621F31D30299E005BF049 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
