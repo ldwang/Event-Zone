@@ -21,6 +21,7 @@ extension Location {
     @NSManaged var locality: String?
     @NSManaged var administrativeArea: String?
     @NSManaged var country: String?
+    @NSManaged var countryCode: String?
     @NSManaged var locationId: NSNumber?
     @NSManaged var event: Event?
 

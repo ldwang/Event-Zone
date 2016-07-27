@@ -15,12 +15,14 @@ class EventListTableViewController: CoreDataTableViewController {
     
     var selectedEvent: Event?
     
+    var stack : CoreDataStack? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Get the stack
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let stack = delegate.stack
+        stack = delegate.stack
         
         //Create a fetchrequest
         
@@ -28,10 +30,14 @@ class EventListTableViewController: CoreDataTableViewController {
         fr.sortDescriptors = [NSSortDescriptor(key: "startsDate", ascending: true), NSSortDescriptor(key: "title", ascending: true)]
         
         //Create the FetchResultsController
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack!.context, sectionNameKeyPath: nil, cacheName: nil)
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
     
     @IBAction func addEvent(sender: AnyObject) {
         
@@ -49,22 +55,69 @@ extension EventListTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("EventListTableViewCell", forIndexPath: indexPath) as! EventListTableViewControllerCell
         selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
         let locations = selectedEvent?.locations
-        print(locations)
         //Set the Event Title and Locations Info
         
         cell.title.text = selectedEvent?.title
+        
+        for loc in locations! {
+                        
+            let location = (loc as! Location)
+
+            if (location.timezone != nil) {
+                let timezone = NSTimeZone(name: location.timezone!)
+                let startsLocalDate = DateTime().presentDateInTimeZone((selectedEvent?.startsDate)!, timezone: timezone!)
+                if location.locationId == 1 {
+                    cell.location1.text = parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
+                } else if location.locationId == 2 {
+                    cell.location2.text = parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
+                }
+            }
+        }
      
         
         
         return cell
         
+    }
+    
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let context = fetchedResultsController?.managedObjectContext,
+            selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
+            where editingStyle == .Delete{
+            
+            context.deleteObject(selectedEvent)
+            
+            stack!.save()
+            
+        }
         
     }
     
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        <#code#>
-//    }
-//    
+    func parseLocationTitle(location: Location) -> String {
+        //put a space between "Washington" and "DC"
+        let firstSpace = (location.administrativeArea != nil) ? " " : ""
+        let addressline = String(
+            format: "%@%@%@,%@",
+            //city
+            location.locality ?? "",
+            firstSpace,
+            //state
+            location.administrativeArea ?? "",
+            //countryCode
+            location.countryCode ?? ""
+        )
+        return addressline
+    }
+
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedEvent = fetchedResultsController?.objectAtIndexPath(indexPath) as? Event
+        performSegueWithIdentifier("EventDetailViewController", sender: self)
+        
+    }
+    
     
 }
 
@@ -82,6 +135,11 @@ extension EventListTableViewController {
                 
                 EventDetailVC.event = selectedEvent
                 
+                if selectedEvent == nil {
+                    EventDetailVC.isNewEvent = true
+                } else {
+                    EventDetailVC.isNewEvent = false
+                }
             }
         }
     }

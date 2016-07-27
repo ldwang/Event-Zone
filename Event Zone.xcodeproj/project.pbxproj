@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF5157661D1F7A5400AD9970 /* Event-Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157651D1F7A5400AD9970 /* Event-Constants.swift */; };
 		EF5157681D208C7300AD9970 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157671D208C7300AD9970 /* DateTime.swift */; };
 		EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */; };
 		EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE11D0E828A00413FC8 /* AppDelegate.swift */; };
@@ -48,7 +47,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EF5157651D1F7A5400AD9970 /* Event-Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event-Constants.swift"; sourceTree = "<group>"; };
 		EF5157671D208C7300AD9970 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		EF601BDE1D0E828A00413FC8 /* Event Zone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Zone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,7 +172,6 @@
 				EFBB4E971D32DDDA0009C9FF /* Location+CoreDataProperties.swift */,
 				EFBB4E981D32DDDA0009C9FF /* Location.swift */,
 				EF9621F21D30299E005BF049 /* CoreDataStack.swift */,
-				EF5157651D1F7A5400AD9970 /* Event-Constants.swift */,
 				EF5157671D208C7300AD9970 /* DateTime.swift */,
 				EFB79E231D28E0CC00805559 /* GeoLocation.swift */,
 				EFB79E251D297CD500805559 /* GoogleMapsAPI.swift */,
@@ -317,7 +314,6 @@
 				EFBB4E991D32DDDA0009C9FF /* Event+CoreDataProperties.swift in Sources */,
 				EFBB4E9A1D32DDDA0009C9FF /* Event.swift in Sources */,
 				EFB79E241D28E0CC00805559 /* GeoLocation.swift in Sources */,
-				EF5157661D1F7A5400AD9970 /* Event-Constants.swift in Sources */,
 				EFB79E261D297CD500805559 /* GoogleMapsAPI.swift in Sources */,
 				EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */,
 				EFBB4EA21D3705E70009C9FF /* EventListTableViewControllerCell.swift in Sources */,

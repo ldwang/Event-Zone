@@ -9,6 +9,7 @@
     <entity name="Location" representedClassName=".Location" syncable="YES">
         <attribute name="administrativeArea" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="locality" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" attributeType="Integer 16" minValueString="1" maxValueString="2" defaultValueString="1" syncable="YES"/>
@@ -19,6 +20,6 @@
     </entity>
     <elements>
         <element name="Event" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Location" positionX="-54" positionY="-9" width="128" height="180"/>
+        <element name="Location" positionX="-54" positionY="-9" width="128" height="195"/>
     </elements>
 </model>

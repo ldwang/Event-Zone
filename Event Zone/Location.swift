@@ -30,6 +30,7 @@ class Location: NSManagedObject {
             self.locality = dictionary["locality"] as? String
             self.administrativeArea = dictionary["administrativeArea"] as? String
             self.country = dictionary["country"] as? String
+            self.countryCode = dictionary["countryCode"] as? String
             
         }else{
             fatalError("Unable to find Entity name!")
