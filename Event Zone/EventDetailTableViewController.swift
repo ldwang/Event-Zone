@@ -512,13 +512,14 @@ extension EventDetailTableViewController {
 
             } else if row == .Location1Search || row == .Location2Search {
                 
-                let locationSearchTable = (self.storyboard?.instantiateViewControllerWithIdentifier("LocationSearchTableViewController"))! as! LocationSearchTableViewController
-                let location = (row == .Location1Search) ? "location1" : "location2"
-                
-                locationSearchTable.location = location
-                locationSearchTable.handleLocationSearchDelegate = self
-                
-                self.presentViewController(locationSearchTable, animated: true, completion: nil)
+//                let locationSearchTable = (self.storyboard?.instantiateViewControllerWithIdentifier("LocationSearchTableViewController"))! as! LocationSearchTableViewController
+//                let location = (row == .Location1Search) ? "location1" : "location2"
+//                
+//                locationSearchTable.location = location
+//                locationSearchTable.handleLocationSearchDelegate = self
+//                
+//                self.presentViewController(locationSearchTable, animated: true, completion: nil)
+                performSegueWithIdentifier("LocationSearchTableViewController", sender: self)
                 
             }
         }
@@ -691,4 +692,30 @@ extension EventDetailTableViewController: HandleLocationSearch {
         }
         
     }
+}
+
+extension EventDetailTableViewController {
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier! == "LocationSearchTableViewController"{
+            
+            if let LocationSearchVC = segue.destinationViewController as? LocationSearchTableViewController{
+                
+                LocationSearchVC.handleLocationSearchDelegate = self
+                let indexPath = tableView.indexPathForSelectedRow!
+                let row = Row(indexPath: indexPath)
+                if row == .Location1Search || row == .Location2Search {
+                    let location = (row == .Location1Search) ? "location1" : "location2"
+                    LocationSearchVC.location = location
+                }
+                
+            }
+        }
+    }
+    
 }

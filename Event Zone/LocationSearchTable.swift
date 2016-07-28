@@ -11,7 +11,7 @@ import UIKit
 import MapKit
 
 
-class LocationSearchTableViewController : UIViewController {
+class LocationSearchTableViewController : UITableViewController {
     
     
     var matchingItems : [MKMapItem] = []
@@ -19,7 +19,7 @@ class LocationSearchTableViewController : UIViewController {
     var location: String? = nil
     
     
-    @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var tableView: UITableView!
     
     
     let searchController = UISearchController(searchResultsController: nil)
@@ -28,18 +28,24 @@ class LocationSearchTableViewController : UIViewController {
     
     override func viewDidLoad() {
         
-        self.tableView.allowsSelection = true
+        //self.tableView.allowsSelection = true
         
         super.viewDidLoad()
         
         
         searchController.searchResultsUpdater = self
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = false
-        definesPresentationContext = true
+        
+        //https://stackoverflow.com/a/33316474/6647937 solve the popViewControllerAnimated issue "while an existing transition or presentation is occurring; the navigation stack will not be updated"
+        searchController.definesPresentationContext = true
+
+        
         tableView.tableHeaderView = searchController.searchBar
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
     }
+    
     
     func parseAddress(selectedItem: MKPlacemark) -> String {
         //put a space between "4" and "Melrose Place"
@@ -93,33 +99,35 @@ extension LocationSearchTableViewController: UISearchResultsUpdating {
 }
 
 
-extension LocationSearchTableViewController: UITableViewDelegate, UITableViewDataSource {
+extension LocationSearchTableViewController {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(matchingItems)
         return matchingItems.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell")
         let selectedItem = matchingItems[indexPath.row].placemark
         
-        cell?.textLabel?.text = selectedItem.name
-        cell?.detailTextLabel?.text = parseAddress(selectedItem)
+        cell!.textLabel!.text = selectedItem.name
+        cell!.detailTextLabel!.text = parseAddress(selectedItem)
         return cell!
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
         //print(selectedItem)
+        
         searchController.active = false
         handleLocationSearchDelegate?.getLocationFromSearch(location!, placemark: selectedItem)
-        dismissViewControllerAnimated(true, completion: nil)
         
+        self.navigationController?.popViewControllerAnimated(true)
         
     }
 
