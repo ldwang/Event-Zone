@@ -18,6 +18,8 @@ class LocationSearchTableViewController : UITableViewController {
     var handleLocationSearchDelegate: HandleLocationSearch? = nil
     var location: String? = nil
     
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
     
     //@IBOutlet weak var tableView: UITableView!
     
@@ -42,8 +44,12 @@ class LocationSearchTableViewController : UITableViewController {
 
         
         tableView.tableHeaderView = searchController.searchBar
-//        tableView.delegate = self
-//        tableView.dataSource = self
+
+        //set up activityIndicator
+        //activityIndicator.color = UIColor.magentaColor()
+        activityIndicator.frame = CGRectMake(0.0, 0.0, 10.0, 10.0)
+        activityIndicator.center = self.view.center
+        self.view.addSubview(activityIndicator)
     }
     
     
@@ -81,17 +87,30 @@ extension LocationSearchTableViewController: UISearchResultsUpdating {
         guard let searchBarText = self.searchController.searchBar.text
             else { return }
         
+        guard searchBarText.characters.count > 1
+            else {return}
+        
+        activityIndicator.bringSubviewToFront(self.view)
+        activityIndicator.startAnimating()
+        
         let request = MKLocalSearchRequest()
         
         request.naturalLanguageQuery = searchBarText
         
         let search = MKLocalSearch(request: request)
         
-        search.startWithCompletionHandler { response, _ in
+        search.startWithCompletionHandler { response, error in
             guard let response = response
-                else { return }
+                else {
+                    print(error?.localizedDescription)
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.hidesWhenStopped = true
+                    return }
             
             self.matchingItems = response.mapItems
+            
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.hidesWhenStopped = true
             self.tableView.reloadData()
         }
     }

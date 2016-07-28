@@ -89,5 +89,20 @@ class GeoLocation : NSObject {
         }
     }
 
+    func parseLocationTitle(location: Location) -> String {
+        //put a space between "Washington" and "DC"
+        let firstSpace = (location.administrativeArea != nil) ? " " : ""
+        let addressline = String(
+            format: "%@%@%@,%@",
+            //city
+            location.locality ?? "",
+            firstSpace,
+            //state
+            location.administrativeArea ?? "",
+            //countryCode
+            location.countryCode ?? ""
+        )
+        return addressline
+    }
 
 }

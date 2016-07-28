@@ -67,9 +67,9 @@ extension EventListTableViewController {
                 let timezone = NSTimeZone(name: location.timezone!)
                 let startsLocalDate = DateTime().presentDateInTimeZone((selectedEvent?.startsDate)!, timezone: timezone!)
                 if location.locationId == 1 {
-                    cell.location1.text = parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
+                    cell.location1.text = GeoLocation().parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
                 } else if location.locationId == 2 {
-                    cell.location2.text = parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
+                    cell.location2.text = GeoLocation().parseLocationTitle(location) + "\t " + startsLocalDate + "  " + (timezone!.abbreviation)!
                 }
             }
         }
@@ -95,21 +95,7 @@ extension EventListTableViewController {
         
     }
     
-    func parseLocationTitle(location: Location) -> String {
-        //put a space between "Washington" and "DC"
-        let firstSpace = (location.administrativeArea != nil) ? " " : ""
-        let addressline = String(
-            format: "%@%@%@,%@",
-            //city
-            location.locality ?? "",
-            firstSpace,
-            //state
-            location.administrativeArea ?? "",
-            //countryCode
-            location.countryCode ?? ""
-        )
-        return addressline
-    }
+
 
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

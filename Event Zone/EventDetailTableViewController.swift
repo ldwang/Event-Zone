@@ -112,7 +112,7 @@ class EventDetailTableViewController: UITableViewController {
                     }
                 }
                 
-                updateLocationsAnnotation()
+                updateMapAnnotationByLocation()
                 updateDatePickerTimeZones()
                 updateDatePickerDates()
                 updateLocationsDateLabel()
@@ -356,24 +356,34 @@ class EventDetailTableViewController: UITableViewController {
         tableView.endUpdates()
     }
     
-    //update map annotations for location1 and location2
-    func updateLocationsAnnotation() {
+    //update map annotations for location1 and location2 from Placemarks
+    func updateMapAnnotationByPlacemark() {
         
         //clear existing pins
         mapView.removeAnnotations(mapView.annotations)
         
-        //var annotations = MKPointAnnotation()[]
-        
         for placemark in [location1Placemark, location2Placemark] {
+            
             if placemark != nil {
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = placemark!.coordinate
-                annotation.title = placemark!.name
                 
-                if let city = placemark!.locality,
-                    let country = placemark!.country {
-                    annotation.subtitle = "\(city) \(country)"
-                }
+                let firstSpace = (placemark!.administrativeArea != nil) ? " " : ""
+                let addressline = String(
+                    format: "%@%@%@,%@",
+                    //city
+                    placemark!.locality ?? "",
+                    firstSpace,
+                    //state
+                    placemark!.administrativeArea ?? "",
+                    //country
+                    placemark!.country ?? ""
+                )
+
+
+                    annotation.title = placemark!.name
+                    annotation.subtitle = addressline
+                
                 mapView.addAnnotation(annotation)
 
             }
@@ -382,6 +392,26 @@ class EventDetailTableViewController: UITableViewController {
         GeoLocation().fitMapViewToAnnotations(mapView)
 
     }
+    
+    func updateMapAnnotationByLocation() {
+        //clear existing pins
+        mapView.removeAnnotations(mapView.annotations)
+        
+        for location in [location1, location2] {
+        
+            if location != nil {
+            let annotation = MKPointAnnotation()
+                annotation.coordinate = CLLocationCoordinate2DMake(Double(location!.latitude!), Double(location!.longitude!))
+                annotation.title = location?.title
+                annotation.subtitle = GeoLocation().parseLocationTitle(location!)
+                
+                mapView.addAnnotation(annotation)
+            }
+        }
+        
+        GeoLocation().fitMapViewToAnnotations(mapView)
+    }
+    
     
     //Update all the DatePickers' date to sync with each locations
     func updateDatePickerDates() {
@@ -659,7 +689,7 @@ extension EventDetailTableViewController: HandleLocationSearch {
         }
         
         
-        updateLocationsAnnotation()
+        updateMapAnnotationByPlacemark()
         
         if eventStartsDate != nil {
             GoogleMapsAPI().getTimeZoneForLocation(placemark.coordinate, date: eventStartsDate!) { timezone, error in
