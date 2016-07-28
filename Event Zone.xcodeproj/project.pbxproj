@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF1BF83E1D496414004C0286 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1BF83D1D496414004C0286 /* CoreDataStack.swift */; };
+		EF1BF8401D4A505E004C0286 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = EF1BF83F1D4A505E004C0286 /* readme.txt */; };
 		EF5157681D208C7300AD9970 /* DateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157671D208C7300AD9970 /* DateTime.swift */; };
 		EF5157A61D2469AA00AD9970 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */; };
 		EF601BE21D0E828A00413FC8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF601BE11D0E828A00413FC8 /* AppDelegate.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		EF1BF83D1D496414004C0286 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		EF1BF83F1D4A505E004C0286 /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		EF5157671D208C7300AD9970 /* DateTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTime.swift; sourceTree = "<group>"; };
 		EF5157A51D2469AA00AD9970 /* LocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		EF601BDE1D0E828A00413FC8 /* Event Zone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Event Zone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +132,7 @@
 				EF601BE81D0E828A00413FC8 /* Assets.xcassets */,
 				EF601BEA1D0E828A00413FC8 /* LaunchScreen.storyboard */,
 				EF601BED1D0E828A00413FC8 /* Info.plist */,
+				EF1BF83F1D4A505E004C0286 /* readme.txt */,
 			);
 			path = "Event Zone";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			files = (
 				EF601BEC1D0E828A00413FC8 /* LaunchScreen.storyboard in Resources */,
 				EF601BE91D0E828A00413FC8 /* Assets.xcassets in Resources */,
+				EF1BF8401D4A505E004C0286 /* readme.txt in Resources */,
 				EF601BE71D0E828A00413FC8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
