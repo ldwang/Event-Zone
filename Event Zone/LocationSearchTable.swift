@@ -52,6 +52,12 @@ class LocationSearchTableViewController : UITableViewController {
         self.view.addSubview(activityIndicator)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchController.active = false
+    }
+    
+
     
     func parseAddress(selectedItem: MKPlacemark) -> String {
         //put a space between "4" and "Melrose Place"
@@ -84,7 +90,7 @@ class LocationSearchTableViewController : UITableViewController {
 extension LocationSearchTableViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-        guard let searchBarText = self.searchController.searchBar.text
+        guard let searchBarText = searchController.searchBar.text
             else { return }
         
         guard searchBarText.characters.count > 1
@@ -102,7 +108,8 @@ extension LocationSearchTableViewController: UISearchResultsUpdating {
         search.startWithCompletionHandler { response, error in
             guard let response = response
                 else {
-                    print(error?.localizedDescription)
+                    showAlert(searchController, alertString: error?.localizedDescription)
+                    searchController.searchBar.text = ""
                     self.activityIndicator.stopAnimating()
                     self.activityIndicator.hidesWhenStopped = true
                     return }
